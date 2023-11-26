@@ -1,32 +1,56 @@
 package org.example;
 
-public class Freelancer extends BaseWorker{
-    private Bid workbid;
+public class Freelancer extends BaseWorker implements Kivy{
+//region полев
+    private Bid workBid;
 
-    public Freelancer(String name, double salary, double payment, Bid workbid) {
-        super(name, salary, payment);
-        this.workbid = workbid;
+    private double payment;
+
+//region конструкторов
+    private Freelancer(String name, double salary, double payment, Bid workBid) {
+        super(name, salary);
+        this.workBid = workBid;
+        this.payment = payment;
     }
 
+
+// region методов
+    public static Freelancer createFreelancer(String name, double salary, double payment, Bid workBid){
+        return  new Freelancer(name, salary, payment,workBid);
+    }
+
+    /**
+     * Описать в базовом классе абстрактный метод для расчёта среднемесячной заработной платы.
+     */
     @Override
-    void payment() {
-        System.out.println("im Freelancer");
+    void monthlySalary() {
+        // «среднемесячная заработная плата = 20.8 * 8 * почасовая ставка»,
+        if(workBid.equals(Bid.HOURLY_RATE)){
+            this.payment += (getSalary() * 8) * 30;
+        }
     }
 
-
-    // «среднемесячная заработная плата = 20.8 * 8 * почасовая ставка»,
-
-// поле методов
-    @Override
-    void workBid() {
-
-    }
 // поле гетеров
     public Bid getWorkbid() {
-        return workbid;
+        return workBid;
+    }
+    public double getPayment() {
+        return payment;
+    }
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+ ", payment: "+ payment +", workbid: "+ workBid;
     }
 
 
-
-
+    @Override
+    public double kivyMany() {
+        return payment;
+    }
 }

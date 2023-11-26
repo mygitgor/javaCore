@@ -1,32 +1,31 @@
 package org.example;
 
-public abstract class BaseWorker {
-//поле полев
+public abstract class BaseWorker implements Kivy{
+//region полев
     private  String name;
     private  double salary;
-    private double payment;
 
-//поле конструкторов
-    public BaseWorker(String name, double salary, double payment){
+//region конструкторов
+    public BaseWorker(String name, double salary){
         this.salary = salary;
         this.name = name;
-        this.payment = payment;
     }
 
-//поле методов
-    abstract void payment();
-    abstract void workBid();
+//region методов
+//Описать в базовом классе абстрактный метод для расчёта среднемесячной заработной платы.
+    abstract void monthlySalary();
 
-//поле гетеров
-    public double getPayment() {
-        return payment;
-    }
-
+//region гетеров
     public double getSalary() {
         return salary;
     }
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        return "name: "+ name + ", salary: "+ salary;
     }
 }
