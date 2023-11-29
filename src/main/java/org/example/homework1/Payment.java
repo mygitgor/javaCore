@@ -1,4 +1,4 @@
-package org.example;
+package org.example.homework1;
 
 public class Payment {
     private int payment;

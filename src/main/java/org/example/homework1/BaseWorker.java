@@ -1,4 +1,4 @@
-package org.example;
+package org.example.homework1;
 
 public abstract class BaseWorker implements Kivy{
 //region полев
