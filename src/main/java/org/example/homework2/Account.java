@@ -2,43 +2,57 @@ package org.example.homework2;
 
 import org.example.homework2.ProgramExeptions.IllegalArgument;
 
-public class Account {
+public class Account extends BaseAccount {
+    /**
+     * ***Попытка создать счет с отрицательным начальным балансом должна вызывать исключен>
+     *
+     * ***Попытка внести депозит с отрицательной суммой должна вызывать исключение Illega
+     *
+     * ***Попытка снять средства, сумма которых превышает текущий баланс, должна вызывать
+     */
 //region peremenni;
-    private String name;
-    private String surname;
-    private int phone;
+    private double check; //счет
 
 //region constructor;
-    public Account(String name, String surname, int phone) {
-        this.name = name;
-        this.surname = surname;
-        this.phone = phone;
+
+    protected Account(String name, String surname, int phone, double check) {
+        super(name, surname, phone);
+            this.check = check;
     }
 
 //region method;
+    public static Account createAccount(String name, String surname, int phone, double check) throws IllegalArgument {
+        if(check < 0.0) {
+            throw new IllegalArgument("Нельзя создать отрицательны счет!",check);
+        }else {
+            return new Account(name, surname, phone, check);
+        }
+    }
 
+    public void deposit(double amount) throws IllegalArgument {
+        if(amount < 0.0){
+            throw new IllegalArgument("ваш депозит должна бить положительным :",amount);
+        }else {
+            check += amount;
+        }
+    }
 
+    public void takeFromBalance(double amount) throws IllegalArgument {
+        if(check - amount < 0) {
+            throw new IllegalArgument("нелзя снять болше чем текущий баланс :", amount);
+        }else {
+            check -= amount;
+        }
+    }
 
 //region toString;
     @Override
     public String toString() {
-        return "name:"+ getName() + ", surname:"+getSurname()+ ", phone:"+getPhone();
+        return super.toString() + ", Check: " + getCheck();
     }
 
 //region geter && seter;
-    public String getName() {return name;}
-
-    public void setName(String name) {this.name = name;}
-
-    public String getSurname() {return surname;}
-
-    public void setSurname(String surname) {this.surname = surname;}
-
-    public int getPhone() {return phone;}
-
-    public void setPhone(int phone) {this.phone = phone;}
-
-
-
-
+    public double getCheck() {
+        return check;
+    }
 }
