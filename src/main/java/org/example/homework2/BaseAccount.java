@@ -6,7 +6,9 @@ public class BaseAccount {
     private String surname;
     private int phone;
 
-//region constructor;
+
+
+    //region constructor;
     public BaseAccount(String name, String surname, int phone) {
         this.name = name;
         this.surname = surname;
@@ -29,5 +31,11 @@ public class BaseAccount {
     public String getSurname() {return surname;}
 
     public int getPhone() {return phone;}
+
+    public void setName(String name) {this.name = name;}
+
+    public void setSurname(String surname) {this.surname = surname;}
+
+    public void setPhone(int phone) {this.phone = phone;}
 
 }

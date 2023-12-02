@@ -13,7 +13,7 @@ public class ProgramJava {
          */
 
         Account account = Account.createAccount("User1","figaro",1234,100);
-        Account account1 = Account.createAccount("User2","figaro",1234,152.0);
+        Account account1 = Account.createAccount("User2","figaro",1234, 152);
         account.deposit(200);
         account.takeFromBalance(250);
         account1.deposit(300);
@@ -40,6 +40,14 @@ public class ProgramJava {
         transaction.transfer(account2,account3,50);
         System.out.println(account2);
         System.out.println(account3);
+
+        //_______________________________________________________________________________________________
+
+        /**
+         * Этот код предоставляет простую консольную интерактивность для регистрации и входа в систему.
+         */
+        UserAccountSystem userAccountSystem = new UserAccountSystem();
+        userAccountSystem.userAccountSystem();
 
     }
 }

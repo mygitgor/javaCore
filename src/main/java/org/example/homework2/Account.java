@@ -3,6 +3,8 @@ package org.example.homework2;
 import org.example.homework2.ProgramExeptions.IllegalArgument;
 
 public class Account extends BaseAccount {
+
+
     /**
      * ***Попытка создать счет с отрицательным начальным балансом должна вызывать исключен>
      *
@@ -55,4 +57,14 @@ public class Account extends BaseAccount {
     public double getCheck() {
         return check;
     }
+    public void setCheck(double check) {this.check = check;}
+
+    @Override
+    public void setName(String name) {super.setName(name);}
+
+    @Override
+    public void setSurname(String surname) {super.setSurname(surname);}
+
+    @Override
+    public void setPhone(int phone) {super.setPhone(phone);}
 }
