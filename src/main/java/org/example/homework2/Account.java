@@ -14,20 +14,22 @@ public class Account extends BaseAccount {
      */
 //region peremenni;
     private double check; //счет
+    private String password;
 
 //region constructor;
 
-    protected Account(String name, String surname, int phone, double check) {
+    protected Account(String name, String surname, int phone, double check,String password) {
         super(name, surname, phone);
             this.check = check;
+            this.password = password;
     }
 
 //region method;
-    public static Account createAccount(String name, String surname, int phone, double check) throws IllegalArgument {
+    public static Account createAccount(String name, String surname, int phone, double check,String password) throws IllegalArgument {
         if(check < 0.0) {
             throw new IllegalArgument("Нельзя создать отрицательны счет!",check);
         }else {
-            return new Account(name, surname, phone, check);
+            return new Account(name, surname, phone, check,password);
         }
     }
 
@@ -47,10 +49,14 @@ public class Account extends BaseAccount {
         }
     }
 
+    public boolean checkPassword(String inputPassword) {
+        return password.equals(inputPassword);
+    }
+
 //region toString;
     @Override
     public String toString() {
-        return super.toString() + ", Check: " + getCheck();
+        return super.toString() + ", Check: " + getCheck()+ "Password: "+getPassword();
     }
 
 //region geter && seter;
@@ -58,6 +64,8 @@ public class Account extends BaseAccount {
         return check;
     }
     public void setCheck(double check) {this.check = check;}
+    public String getPassword(){return password;}
+    public void setPassword(String password){this.password = password;}
 
     @Override
     public void setName(String name) {super.setName(name);}

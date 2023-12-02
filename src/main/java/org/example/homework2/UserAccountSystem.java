@@ -5,13 +5,16 @@ import org.example.homework2.ProgramExeptions.IllegalArgument;
 import java.util.Scanner;
 
 public class UserAccountSystem {
-    private AccountManager accountManager;
+    private AccountManager accountManager = AccountManager.getAccountManager();
 
-    public AccountManager getAccountManager() {
-        return accountManager;
+    public static UserAccountSystem getAccountSystem(){
+        return new UserAccountSystem();
     }
-
     Scanner scanner = new Scanner(System.in);
+
+    /**
+     * Этот код предоставляет простую консольную интерактивность для регистрации и входа в систему.
+     */
     public void userAccountSystem() throws IllegalArgument {
         while (true) {
             System.out.println("1. Регистрация");
@@ -26,7 +29,7 @@ public class UserAccountSystem {
                 case 1:
                     System.out.print("Введите имя пользователя: ");
                     String regUsername = scanner.nextLine();
-                    Account account1 = Account.createAccount(null, null, 0, 0.0);
+                    Account account1 = Account.createAccount(null, null, 0, 0.0,null);
                     account1.setName(regUsername);
                     System.out.print("Введите фамилия пользователя: ");
                     String regUserSurname = scanner.nextLine();
@@ -37,10 +40,19 @@ public class UserAccountSystem {
                     System.out.print("Введите щет пользователя: ");
                     double regUserCheck = scanner.nextInt();
                     account1.setCheck(regUserCheck);
+                    System.out.print("Введите пороль пользователя: ");
+                    String regUserPassword = scanner.nextLine();
+                    account1.setPassword(regUserPassword);
+                    System.out.println("account created next to adding...");
                     accountManager.addAccount(account1);
+                    System.out.println("account added");
                     break;
                 case 2:
                     System.out.print("Введите имя пользователя: ");
+                    String loginUsername = scanner.nextLine();
+                    System.out.print("Введите пароль: ");
+                    String loginPassword = scanner.nextLine();
+                    Account loggedInUser = accountManager.loginUser(loginUsername, loginPassword);
                     break;
                 case 3:
                     System.out.println("Выход из системы.");
