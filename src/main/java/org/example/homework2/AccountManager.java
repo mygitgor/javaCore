@@ -1,35 +1,46 @@
 package org.example.homework2;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import org.example.homework2.ProgramExeptions.IllegalArgument;
+
+import java.util.*;
 
 public class AccountManager {
     //Compositor variant
-    private Map<String,Account> accountList = new HashMap<>();
-    private AccountManager(){}
-    public static AccountManager getAccountManager(){
-        return new AccountManager();
+    AccountManager manager;
+    public Map<String,Account> accountList;
+    public AccountManager(){
+        this.accountList = new HashMap<>();
     }
-    public void addAccount(Account account){
-        accountList.put(account.getName(), account);
+
+    public void addAccount(Account account, String name){
+        accountList.put(name,account);
     }
-    public void deleteAccount(Account account){
-        accountList.remove(account.getName(),account);
+    public void deleteAccount(Account account,String name){
+        accountList.remove(name,account);
     }
-    public Account loginUser(String usrName, String password){
-        Account userAccount = accountList.get(usrName);
-        if (userAccount != null && userAccount.checkPassword(password)){
-            System.out.println("Вход в систему успешен.");
-            return userAccount;
+
+    public void registerUser(String username, String usersurname,double chack,String password) throws IllegalArgument {
+        if (!accountList.containsKey(username)){
+            Account account = new Account(username,usersurname,chack,password);
+            accountList.put(username,account);
+            System.out.printf("Регистрация успешна. %s\n",username);
         }
         else {
+            System.out.printf("Пользователь с таким именем %s уже существует.",username);
+        }
+    }
+
+    public Account loginUser(String usrName, String password){
+        Account account = accountList.get(usrName);
+        if (account != null && account.checkPassword(password)){
+            System.out.printf("Вход в систему успешен. %s",usrName);
+            return account;
+        }
+        else{
             System.out.println("Неверное имя пользователя или пароль.");
             return null;
         }
     }
-
 
 
 }

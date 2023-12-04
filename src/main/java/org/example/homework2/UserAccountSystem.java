@@ -5,17 +5,13 @@ import org.example.homework2.ProgramExeptions.IllegalArgument;
 import java.util.Scanner;
 
 public class UserAccountSystem {
-    private AccountManager accountManager = AccountManager.getAccountManager();
-
-    public static UserAccountSystem getAccountSystem(){
-        return new UserAccountSystem();
-    }
-    Scanner scanner = new Scanner(System.in);
+    AccountManager accountManager = new AccountManager();
 
     /**
      * Этот код предоставляет простую консольную интерактивность для регистрации и входа в систему.
      */
     public void userAccountSystem() throws IllegalArgument {
+        Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("1. Регистрация");
             System.out.println("2. Вход в систему");
@@ -29,22 +25,14 @@ public class UserAccountSystem {
                 case 1:
                     System.out.print("Введите имя пользователя: ");
                     String regUsername = scanner.nextLine();
-                    Account account1 = Account.createAccount(null, null, 0, 0.0,null);
-                    account1.setName(regUsername);
                     System.out.print("Введите фамилия пользователя: ");
                     String regUserSurname = scanner.nextLine();
-                    account1.setSurname(regUserSurname);
-                    System.out.print("Введите телефон пользователя: ");
-                    int regUserPhone = scanner.nextInt();
-                    account1.setPhone(regUserPhone);
                     System.out.print("Введите щет пользователя: ");
                     double regUserCheck = scanner.nextInt();
-                    account1.setCheck(regUserCheck);
-                    System.out.print("Введите пороль пользователя: ");
+                    System.out.println("Введите пороль пользователя: ");
                     String regUserPassword = scanner.nextLine();
-                    account1.setPassword(regUserPassword);
                     System.out.println("account created next to adding...");
-                    accountManager.addAccount(account1);
+                    accountManager.registerUser(regUsername,regUserSurname,regUserCheck,regUserPassword);
                     System.out.println("account added");
                     break;
                 case 2:

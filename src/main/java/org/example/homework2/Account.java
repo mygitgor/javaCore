@@ -14,22 +14,25 @@ public class Account extends BaseAccount {
      */
 //region peremenni;
     private double check; //счет
-    private String password;
+
 
 //region constructor;
 
-    protected Account(String name, String surname, int phone, double check,String password) {
-        super(name, surname, phone);
+    public Account(String name, String surname, double check, String password) throws IllegalArgument {
+        super(name, surname, password);
+        if(check < 0.0) {
+            throw new IllegalArgument("Нельзя создать отрицательны счет! %d",check);
+        }else {
             this.check = check;
-            this.password = password;
+        }
     }
 
 //region method;
-    public static Account createAccount(String name, String surname, int phone, double check,String password) throws IllegalArgument {
+    public Account createAccount(String name, String surname, double check,String password) throws IllegalArgument {
         if(check < 0.0) {
-            throw new IllegalArgument("Нельзя создать отрицательны счет!",check);
+            throw new IllegalArgument("Нельзя создать отрицательны счет! ",check);
         }else {
-            return new Account(name, surname, phone, check,password);
+            return new Account(name, surname, check,password);
         }
     }
 
@@ -50,13 +53,13 @@ public class Account extends BaseAccount {
     }
 
     public boolean checkPassword(String inputPassword) {
-        return password.equals(inputPassword);
+        return getPassword().equals(inputPassword);
     }
 
 //region toString;
     @Override
     public String toString() {
-        return super.toString() + ", Check: " + getCheck()+ "Password: "+getPassword();
+        return super.toString() + ", Check: " + getCheck();
     }
 
 //region geter && seter;
@@ -64,15 +67,5 @@ public class Account extends BaseAccount {
         return check;
     }
     public void setCheck(double check) {this.check = check;}
-    public String getPassword(){return password;}
-    public void setPassword(String password){this.password = password;}
 
-    @Override
-    public void setName(String name) {super.setName(name);}
-
-    @Override
-    public void setSurname(String surname) {super.setSurname(surname);}
-
-    @Override
-    public void setPhone(int phone) {super.setPhone(phone);}
 }

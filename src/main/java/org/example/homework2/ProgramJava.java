@@ -12,8 +12,8 @@ public class ProgramJava {
          *  Попытка снять средства, сумма которых превышает текущий баланс, должна вызывать>
          */
 
-//        Account account = Account.createAccount("User1","figaro",1234,100);
-//        Account account1 = Account.createAccount("User2","figaro",1234, 152);
+//        Account account = Account.createAccount("User1","figaro",1234,"123");
+//        Account account1 = Account.createAccount("User2","figaro",1234, "123");
 //        account.deposit(200);
 //        account.takeFromBalance(250);
 //        account1.deposit(300);
@@ -30,8 +30,8 @@ public class ProgramJava {
          *          * Класс Transaction должен возбуждать исключение в случае неудачной попытки перев>
          */
 //        AccountManager manager = AccountManager.getAccountManager();
-//        Account account2 = Account.createAccount("Debut User2","figaro",1234,100);
-//        Account account3 = Account.createAccount("Credit User3","figaro",1234,100);
+//        Account account2 = Account.createAccount("Debut User2","figaro",1234,"123");
+//        Account account3 = Account.createAccount("Credit User3","figaro",1234,"123");
 //        manager.addAccount(account2);
 //        manager.addAccount(account3);
 //        manager.addAccount(account);
@@ -46,8 +46,13 @@ public class ProgramJava {
         /**
          * Этот код предоставляет простую консольную интерактивность для регистрации и входа в систему.
          */
-        UserAccountSystem userAccountSystem = UserAccountSystem.getAccountSystem();
+
+        UserAccountSystem userAccountSystem = new UserAccountSystem();
         userAccountSystem.userAccountSystem();
+
+
+
+
 
     }
 }

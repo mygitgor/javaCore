@@ -1,10 +1,9 @@
 package org.example.homework3;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -75,6 +74,19 @@ public class ProgramJava {
         }
     }
 
+    static List<String> subdirMatch(File dir, String search) throws IOException {
+        List<String>list = new ArrayList<>();
+        File[] files = dir.listFiles();
+        if(files == null) return list;
+        for (int i = 0; i < files.length; i++) {
+            if(files[i].isFile()){
+                if(searchInFill(files[i].getCanonicalPath(),search)){
+                    list.add(files[i].getCanonicalPath());
+                }
+            }
+        }
+        return list;
+    }
 
     static void concatenate(String fileIn1, String fileIn2, String out)throws IOException{
         try (FileOutputStream fileOutputStream = new FileOutputStream(out)){
