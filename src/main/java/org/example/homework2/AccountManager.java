@@ -30,10 +30,33 @@ public class AccountManager {
         }
     }
 
+    public void registerUserDebit(String username, String usersurname,double chack,String password) throws IllegalArgument {
+        if (!accountList.containsKey(username)){
+            DebitAccount account = new DebitAccount(username,usersurname,chack,password);
+            accountList.put(username,account);
+            System.out.printf("Регистрация %s Debit Account успешна. \n",username);
+        }
+        else {
+            System.out.printf("Пользователь с таким именем %s уже существует.",username);
+        }
+    }
+
+    public void registerUserCredit(String username, String usersurname,double chack,String password) throws IllegalArgument {
+        if (!accountList.containsKey(username)){
+            DebitAccount account = new DebitAccount(username,usersurname,chack,password);
+            accountList.put(username,account);
+            System.out.printf("Регистрация %s Credit Account успешна. ",username);
+            System.out.println();
+        }
+        else {
+            System.out.printf("Пользователь с таким именем %s уже существует.",username);
+        }
+    }
     public Account loginUser(String usrName, String password){
         Account account = accountList.get(usrName);
         if (account != null && account.checkPassword(password)){
             System.out.printf("Вход в систему успешен. %s",usrName);
+            System.out.println();
             return account;
         }
         else{
