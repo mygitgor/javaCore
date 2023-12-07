@@ -2,6 +2,8 @@ package org.example.homework3;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -9,12 +11,14 @@ import java.util.Random;
 
 
 public class ProgramJava {
-
+   // Написать функцию, создающую резервную копию всех файлов в директории во вновь созданную папку ./backup
     private static final Random random = new Random();
     private static final int CHAR_BOUND_L = 70;
     private static final int CHAR_BOUND_H = 90;
     private static final String TO_SEARCH = "GeekBrains";
     public static void main(String[] args) throws IOException {
+
+//------------------------------------------------------------------------
         System.out.println(generateSymbol(14));
 
         writeContent("myfile1.txt", 20,TO_SEARCH);
@@ -24,6 +28,8 @@ public class ProgramJava {
 
         System.out.println(searchInFill("myfile1.txt", TO_SEARCH));
         System.out.println(searchInFill("myfile2.txt", TO_SEARCH));
+
+
     }
 
     static String generateSymbol(int count){
@@ -104,6 +110,10 @@ public class ProgramJava {
             }
         }
     }
+
+
+
+
     private static int random(int min, int max){
         return random.nextInt(max - min) + min;
     }
