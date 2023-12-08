@@ -19,6 +19,12 @@ public class ProgramJava {
     public static void main(String[] args) throws IOException {
 
 //------------------------------------------------------------------------
+        String sours = "/home/mohito/IdeaProjects/oop/src";
+        String dist = "./backup";
+
+//        copyBackup(sours,dist,true);
+
+
         System.out.println(generateSymbol(14));
 
         writeContent("myfile1.txt", 20,TO_SEARCH);
@@ -110,8 +116,38 @@ public class ProgramJava {
             }
         }
     }
+    //-----------------------------------------------------------------------------------
+    public static void copyBackup(String sourcePath, String dest,boolean isLast) throws IOException{
+        File sourceFile = new File(sourcePath);
+        File[] files = sourceFile.listFiles();
+        int subdir = 0;
+        for (int i = 0; i < files.length; i++) {
+            if (files[i].isDirectory()){
+                subdir++;
+                copy(new File(files[i].getCanonicalPath()),dest);
+            }
+        }
+
+        int subdirCounter = 0;
+        for (int i = 0; i < files.length; i++) {
+            if (files[i].isDirectory()){
+                subdirCounter++;
+                copyBackup(sourcePath,dest,subdir==++subdirCounter);
+
+            }
+        }
+    }
 
 
+    public static void copy(File source, String dist){
+       String distanc = String.valueOf(new File(dist));
+        try {
+            Files.copy(source.toPath(), Path.of(distanc));
+            }catch (IOException e){
+            System.out.println("copy exeption"+e);
+        }
+
+    }
 
 
     private static int random(int min, int max){

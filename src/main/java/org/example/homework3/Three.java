@@ -15,10 +15,9 @@ public class Three {
 
         File sourcePath = new File("/home/mohito/IdeaProjects/oop/src");
         File out = new File("./backup");
-        //print(new File("."), "", true);
+        print(new File("."), "", true);
         //backupFiles(out, sourcePath);
-        writeBackup(out,sourcePath);
-
+      
     }
 
     static void print(File file, String indent, boolean isLast){
@@ -52,19 +51,5 @@ public class Three {
 
 
 
-    static void writeBackup(File out, File source) throws IOException {
-        if (!Files.exists(out.toPath())) {
-            Files.createDirectory(out.toPath());
-        }
-        try (FileOutputStream fileOutputStream = new FileOutputStream(source)) {
-            File[] files = source.listFiles();
-            int c;
-            try (FileInputStream fileInputStream = new FileInputStream(Arrays.toString(new File[]{out}))) {
-                while ((c = fileInputStream.read()) != -1) {
-                    assert files != null;
-                    fileOutputStream.write(files.getClass().getModifiers());
-                }
-            }
-        }
-    }
+
 }
