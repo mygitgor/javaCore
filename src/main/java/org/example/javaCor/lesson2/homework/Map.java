@@ -157,7 +157,56 @@ public class Map extends JPanel {
     }
 
     private void render(Graphics g) {
+        width = getWidth();
+        height = getHeight();
+        cellWith = width / fieldSizeX;
+        cellHeight = height / fieldSizeY;
 
+        g.setColor(Color.BLACK);
+        for (int h = 0; h < fieldSizeX; h++) {
+            int y = h * cellHeight;
+            g.drawLine(0,y,width,y);
+        }
+        for (int w = 0; w < fieldSizeX; w++) {
+            int x = w * cellWith;
+            g.drawLine(x,0,x,height);
+        }
+        for (int y = 0; y < fieldSizeY; y++) {
+            for (int x = 0; x < fieldSizeX; x++) {
+                if(field[y][x] == EMPTY_DOT){
+                    continue;
+                }
+                if(field[x][y] == HUMAN_DOT){
+                    g.drawLine(x * cellWith + PADDING,y * cellHeight + PADDING,
+                            (x + 1) * cellWith - PADDING,(y + 1) * cellHeight - PADDING);
+                    g.drawLine(x * cellWith + PADDING, (y + 1) * cellHeight - PADDING,
+                            (x + 1) * cellWith - PADDING, y * cellHeight + PADDING);
+                } else if (field[x][y] == AI_DOT) {
+                    g.drawOval(x * cellWith + PADDING, y * cellHeight + PADDING,
+                            cellWith - PADDING * 2, cellHeight - PADDING * 2);
+                }else {
+                    throw new RuntimeException("unchecked value " + field[x][y] +
+                            " in cell: x=" + x + " y=" + y);
+                }
+            }
+        }
+        if(gameStartType != STATE_GAME){
+            showMessage(g);
+        }
     }
+
+    private void showMessage(Graphics g) {
+        g.setColor(Color.DARK_GRAY);
+        g.fillRect(0, getHeight() / 2, getWidth(), 70);
+        g.setColor(Color.YELLOW);
+        g.setFont(new Font("Times new roman", Font.BOLD, 48));
+        switch (gameStartType){
+            case STATE_DRAW: g.drawString(MSG_DRAW,180, getHeight() / 2 + 60);
+            case STATE_WIN_HUMAN: g.drawString(MSG_WIN_HUMAN,20,getHeight() / 2 + 60);
+            case STATE_WIN_AI: g.drawString(MSG_WIN_AI, 70, getHeight() / 2 + 60);
+            default: throw new RuntimeException("Unchecked gameOverState: " + gameStartType);
+        }
+    }
+
 
 }

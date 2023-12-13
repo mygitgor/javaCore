@@ -2,6 +2,7 @@ package org.example.javaCor.lesson2.homework;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -38,11 +39,11 @@ public class GameWindow extends JFrame {
             }
         });
 
-        JPanel panBottom = new JPanel(new GroupLayout(1,2));
+        JPanel panBottom = new JPanel(new GridLayout(1,2));
         panBottom.add(btnStart);
         panBottom.add(btnExit);
 
-        add(panBottom, Border.SOUTH);
+        add(panBottom, BorderLayout.SOUTH);
         add(map);
 
         setVisible(true);

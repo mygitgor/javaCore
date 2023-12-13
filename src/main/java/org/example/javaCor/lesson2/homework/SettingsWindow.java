@@ -8,7 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SettingsWindow {
+
+public class SettingsWindow extends JFrame{
     public static final String BTN_START = "Start New Game";
     public static final String LABEL_CHOICE_MODEL = "Вибери режим игры";
     public static final String BTN_HUMAN_VERSUS_AI = "Человек против компьютера";
@@ -45,7 +46,7 @@ public class SettingsWindow {
     }
 
     private Component createMainPanel(){
-        JPanel jPanel = new JPanel(new GroupLayout(3,1));
+        JPanel jPanel = new JPanel(new GridLayout(3,1));
 
         jPanel.add(createChoiceModePanel());
         jPanel.add(createChoiceSizePanel());
@@ -80,14 +81,14 @@ public class SettingsWindow {
     }
 
     private Component createChoiceModePanel(){
-        JPanel jPanel = new JPanel(new GroupLayout(3,1));
+        JPanel jPanel = new JPanel(new GridLayout(3,1));
         Label label = new Label(LABEL_CHOICE_MODEL);
         ButtonGroup buttonGroup = new ButtonGroup();
         humanVAI = new JRadioButton(BTN_HUMAN_VERSION_HUMAN);
         humanVHuman = new JRadioButton(BTN_HUMAN_VERSION_HUMAN);
         buttonGroup.add(humanVAI);
         buttonGroup.add(humanVHuman);
-        humanVAI.isSelected(true);
+        humanVAI.setSelected(true);
 
         jPanel.add(label);
         jPanel.add(humanVAI);
@@ -97,7 +98,7 @@ public class SettingsWindow {
     }
 
     private Component createChoiceSizePanel(){
-        JPanel jPanel = new JPanel(new GroupLayout(3,1));
+        JPanel jPanel = new JPanel(new GridLayout(3,1));
         Label label = new Label(LABEL_CHOICE_SIZE);
         labelCurSize = new Label(SIZE_PREFIX + MAX_SIZE);
         sizeSlider = new JSlider(MIN_SIZE,MAX_SIZE,MIN_SIZE);
@@ -117,7 +118,7 @@ public class SettingsWindow {
     }
 
     private Component createChoiceWinLengthPanel(){
-        JPanel jPanel = new JPanel(new GroupLayout(3,1));
+        JPanel jPanel = new JPanel(new GridLayout(3,1));
         Label label = new Label(LABEL_CHOICE_WIN_LENGTH);
         labelWinLength = new Label(WIN_LENGTH_PREFIX + MIN_SIZE);
         winSlider = new JSlider(MIN_SIZE,MAX_SIZE,MIN_SIZE);
@@ -132,4 +133,5 @@ public class SettingsWindow {
         jPanel.add(winSlider);
         return jPanel;
     }
+
 }
