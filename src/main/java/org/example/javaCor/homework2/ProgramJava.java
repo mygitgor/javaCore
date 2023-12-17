@@ -2,8 +2,15 @@ package org.example.javaCor.homework2;
 
 import org.example.javaCor.homework2.ProgramExeptions.IllegalArgument;
 
+import javax.swing.*;
+import java.awt.*;
+
+import static java.awt.BorderLayout.CENTER;
+
 public class ProgramJava {
+
     public static void main(String[] args) throws IllegalArgument {
+
         /**
          * 1. Создать программу управления банковским счетом (Account).
          *  Программа должна позволять пользователю вводить начальный баланс счета, сумму д>
@@ -47,12 +54,19 @@ public class ProgramJava {
          * Этот код предоставляет простую консольную интерактивность для регистрации и входа в систему.
          */
 
-        UserAccountSystem userAccountSystem = new UserAccountSystem();
-        userAccountSystem.userAccountSystem();
+//        UserAccountSystem userAccountSystem = new UserAccountSystem();
+//        userAccountSystem.userAccountSystem();
+        //_________________________________________________________________________________
 
-
-
-
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new WindowPanel();
+            }
+        });
 
     }
+
+
+
 }
