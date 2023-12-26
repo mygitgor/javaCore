@@ -6,14 +6,17 @@ public class ProgramJava {
 
          //* Создать справочник сотрудников
         EmployeeDirectory employeeDirectory = new EmployeeDirectory();
-        employeeDirectory.addEmployee("44082124","gor",1);
-        employeeDirectory.addEmployee("41258545","sargis",2);
-        employeeDirectory.addEmployee("42584532","sergio",3);
-        employeeDirectory.addEmployee("45099322","gustavo",2);
+        employeeDirectory.addEmployee(1,"44082124","gor",1);
+        employeeDirectory.addEmployee(2,"41258545","sargis",2);
+        employeeDirectory.addEmployee(3,"42584532","gor",3);
+        employeeDirectory.addEmployee(4,"45099322","gustavo",2);
 
-        List<Employee> employeesWithExperience5 = employeeDirectory.findEmployeesByExperience(3);
-        System.out.println(employeesWithExperience5);
-
+        List<Employee> employeesWithExperience2 = employeeDirectory.findEmployeesByExperience(2);
+        System.out.println(employeesWithExperience2);
+        List<String> employeesWithNumberPhone = employeeDirectory.findPhoneNumbersByName("gor");
+        System.out.println(employeesWithNumberPhone);
+        Employee employeeWithId2 = employeeDirectory.findEmployeeByEmployeeId(2);
+        System.out.println(employeeWithId2);
 
     }
 }

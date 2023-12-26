@@ -7,22 +7,21 @@ public class Employee {
     //* Номер телефона
     //* Имя
     //* Стаж
-    private static int employeeId;
+    private int employeeId;
     private String phoneNumber;
     private String name;
     private int experience;
 
-    public Employee(String phoneNumber, String name, int experience) {
-
+    public Employee(int employeeId, String phoneNumber, String name, int experience) {
         this.phoneNumber = phoneNumber;
         this.name = name;
         this.experience = experience;
-        employeeId++;
+        this.employeeId = employeeId;
     }
 
 
 //----------------------------------------------------region geter and seter
-    public static int getEmployeeId() {
+    public int getEmployeeId() {
         return employeeId;
     }
 

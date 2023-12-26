@@ -19,8 +19,8 @@ public class EmployeeDirectory {
 
     //* Добавить метод добавление нового сотрудника в справочник
 
-    public void addEmployee(String phoneNumber, String name, int experience){
-        employeeList.add(new Employee(phoneNumber, name, experience));
+    public void addEmployee(int id,String phoneNumber, String name, int experience){
+        employeeList.add(new Employee(id,phoneNumber, name, experience));
     }
     public List<Employee> findEmployeesByExperience(int experience){
         List<Employee> employees = new ArrayList<>();
@@ -32,11 +32,22 @@ public class EmployeeDirectory {
         return employees;
     }
 
-    public List<String> findPhoneNumbersByName(){
-        return null;
+    public List<String> findPhoneNumbersByName(String name){
+        List<String> phones = new ArrayList<>();
+        for (Employee employee : employeeList){
+            if(employee.getName().equals(name)){
+                phones.add(employee.getPhoneNumber());
+            }
+        }
+        return phones;
     }
 
-    public Employee findEmployeeByEmployeeId(){
+    public Employee findEmployeeByEmployeeId(int id){
+        for (Employee employee : employeeList){
+            if(employee.getEmployeeId() == id){
+                return employee;
+            }
+        }
         return null;
     }
 
