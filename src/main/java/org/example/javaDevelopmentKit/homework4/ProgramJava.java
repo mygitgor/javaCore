@@ -1,22 +1,18 @@
 package org.example.javaDevelopmentKit.homework4;
-
+import java.util.List;
 public class ProgramJava {
 
     public static void main(String[] args) {
-        /**
-         * Создать справочник сотрудников
-         * Необходимо:
-         * Создать класс справочник сотрудников, который содержит внутри
-         * коллекцию сотрудников - каждый сотрудник должен иметь следующие атрибуты:
-         * Табельный номер
-         * Номер телефона
-         * Имя
-         * Стаж
-         * Добавить метод, который ищет сотрудника по стажу (может быть список)
-         * Добавить метод, который возвращает номер телефона сотрудника по имени (может быть список)
-         * Добавить метод, который ищет сотрудника по табельному номеру
-         * Добавить метод добавление нового сотрудника в справочник
-         */
+
+         //* Создать справочник сотрудников
+        EmployeeDirectory employeeDirectory = new EmployeeDirectory();
+        employeeDirectory.addEmployee("44082124","gor",1);
+        employeeDirectory.addEmployee("41258545","sargis",2);
+        employeeDirectory.addEmployee("42584532","sergio",3);
+        employeeDirectory.addEmployee("45099322","gustavo",2);
+
+        List<Employee> employeesWithExperience5 = employeeDirectory.findEmployeesByExperience(3);
+        System.out.println(employeesWithExperience5);
 
 
     }
