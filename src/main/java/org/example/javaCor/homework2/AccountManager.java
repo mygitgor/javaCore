@@ -1,11 +1,15 @@
 package org.example.javaCor.homework2;
 
 import org.example.javaCor.homework2.ProgramExeptions.IllegalArgument;
+import org.example.javaCor.homework2.ProgramExeptions.NullPointerException;
 
 import java.util.*;
 
+import static org.example.javaCor.homework2.Account.isValidAccount;
+
 public class AccountManager {
     //Compositor variant
+    Account account = null;
     AccountManager manager;
     public Map<String,Account> accountList;
     public AccountManager(){
@@ -19,9 +23,10 @@ public class AccountManager {
         accountList.remove(name,account);
     }
 
-    public void registerUser(String username, String usersurname,double chack,String password) throws IllegalArgument {
+    public void registerUser(String username, String usersurname,double chack,String password) throws IllegalArgument, NullPointerException {
+        if(!isValidAccount(username,usersurname,password))throw new NullPointerException("Нельзя создать аккоунт без заполнени полей",0);
         if (!accountList.containsKey(username)){
-            Account account = new Account(username,usersurname,chack,password);
+            account = account.createAccount(username,usersurname,chack,password);
             accountList.put(username,account);
             System.out.printf("Регистрация успешна. %s\n",username);
         }
@@ -30,7 +35,8 @@ public class AccountManager {
         }
     }
 
-    public void registerUserDebit(String username, String usersurname,double chack,String password) throws IllegalArgument {
+    public void registerUserDebit(String username, String usersurname,double chack,String password) throws IllegalArgument, NullPointerException {
+        if(!isValidAccount(username,usersurname,password))throw new NullPointerException("Нельзя создать аккоунт без заполнени полей",0);
         if (!accountList.containsKey(username)){
             DebitAccount account = new DebitAccount(username,usersurname,chack,password);
             accountList.put(username,account);
@@ -41,7 +47,8 @@ public class AccountManager {
         }
     }
 
-    public void registerUserCredit(String username, String usersurname,double chack,String password) throws IllegalArgument {
+    public void registerUserCredit(String username, String usersurname,double chack,String password) throws IllegalArgument, NullPointerException {
+        if(!isValidAccount(username,usersurname,password))throw new NullPointerException("Нельзя создать аккоунт без заполнени полей",0);
         if (!accountList.containsKey(username)){
             DebitAccount account = new DebitAccount(username,usersurname,chack,password);
             accountList.put(username,account);

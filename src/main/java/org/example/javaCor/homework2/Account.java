@@ -1,6 +1,7 @@
 package org.example.javaCor.homework2;
 
 import org.example.javaCor.homework2.ProgramExeptions.IllegalArgument;
+import org.example.javaCor.homework2.ProgramExeptions.NullPointerException;
 
 public class Account extends BaseAccount {
 
@@ -18,17 +19,22 @@ public class Account extends BaseAccount {
 
 //region constructor;
 
-    public Account(String name, String surname, double check, String password) throws IllegalArgument {
+    public Account(String name, String surname, double check, String password) throws IllegalArgument, NullPointerException {
         super(name, surname, password);
-        if(check < 0.0) {
-            throw new IllegalArgument("Нельзя создать отрицательны счет! %d",check);
-        }else {
+        if(!isValidAccount(name,surname,password))throw new NullPointerException("Нельзя создать аккоунт без заполнени полей",0);
+        if (check < 0.0) {
+                throw new IllegalArgument("Нельзя создать отрицательны счет! %d", check);
+        } else {
             this.check = check;
         }
+
     }
 
 //region method;
-    public Account createAccount(String name, String surname, double check,String password) throws IllegalArgument {
+    public Account createAccount(String name, String surname, double check,String password) throws IllegalArgument, NullPointerException {
+        if(!isValidAccount(name,surname,password)){
+            throw new NullPointerException("Нельзя создать аккоунт без заполнени полей",0);
+        }
         if(check < 0.0) {
             throw new IllegalArgument("Нельзя создать отрицательны счет! ",check);
         }else {
@@ -54,6 +60,10 @@ public class Account extends BaseAccount {
 
     public boolean checkPassword(String inputPassword) {
         return getPassword().equals(inputPassword);
+    }
+
+    public static boolean isValidAccount(String name,String surname,String password){
+        return name != null && surname != null && password != null;
     }
 
 //region toString;

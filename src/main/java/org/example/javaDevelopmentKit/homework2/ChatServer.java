@@ -1,7 +1,7 @@
-package org.example.javaDevelopmentKit;
+package org.example.javaDevelopmentKit.homework2;
 
-import org.example.javaDevelopmentKit.tcpConnection.TCPConnection;
-import org.example.javaDevelopmentKit.tcpConnection.TcpConnectionListener;
+import org.example.javaDevelopmentKit.homework2.tcpConnection.TCPConnection;
+import org.example.javaDevelopmentKit.homework2.tcpConnection.TcpConnectionListener;
 
 import java.io.IOException;
 import java.net.ServerSocket;

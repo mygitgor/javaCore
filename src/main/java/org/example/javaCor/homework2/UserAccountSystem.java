@@ -1,6 +1,7 @@
 package org.example.javaCor.homework2;
 
 import org.example.javaCor.homework2.ProgramExeptions.IllegalArgument;
+import org.example.javaCor.homework2.ProgramExeptions.NullPointerException;
 
 import java.util.Scanner;
 
@@ -10,7 +11,7 @@ public class UserAccountSystem {
     /**
      * Этот код предоставляет простую консольную интерактивность для регистрации и входа в систему.
      */
-    public void userAccountSystem() throws IllegalArgument {
+    public void userAccountSystem() throws IllegalArgument, NullPointerException {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("1. Регистрация Account");

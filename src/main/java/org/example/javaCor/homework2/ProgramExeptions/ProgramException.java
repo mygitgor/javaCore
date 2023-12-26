@@ -7,4 +7,5 @@ public abstract  class ProgramException extends Exception{
         super(message);
         this.argument = argument;
     }
+
 }

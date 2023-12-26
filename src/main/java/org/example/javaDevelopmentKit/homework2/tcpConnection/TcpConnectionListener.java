@@ -1,4 +1,4 @@
-package org.example.javaDevelopmentKit.tcpConnection;
+package org.example.javaDevelopmentKit.homework2.tcpConnection;
 
 public interface TcpConnectionListener {
     void onConnection(TCPConnection tcpConnection);

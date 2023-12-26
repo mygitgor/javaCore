@@ -1,4 +1,4 @@
-package org.example.javaDevelopmentKit.tcpConnection;
+package org.example.javaDevelopmentKit.homework2.tcpConnection;
 
 
 import java.io.*;

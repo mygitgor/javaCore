@@ -1,5 +1,9 @@
 package org.example.javaCor.homework2;
 
+import org.example.javaCor.homework2.ProgramExeptions.NullPointerException;
+
+import static org.example.javaCor.homework2.Account.isValidAccount;
+
 public class BaseAccount {
 //region peremenni;
     private String name;
@@ -9,10 +13,14 @@ public class BaseAccount {
 
 
     //region constructor;
-    public BaseAccount(String name, String surname, String password) {
-        this.name = name;
-        this.surname = surname;
-        this.password = password;
+    public BaseAccount(String name, String surname, String password) throws NullPointerException {
+        if (!isValidAccount(name,surname,password)) {
+            throw new NullPointerException("Нельзя создать без заполнени всех полей!", 0.0);
+        } else {
+            this.name = name;
+            this.surname = surname;
+            this.password = password;
+        }
     }
 
 //region method;
