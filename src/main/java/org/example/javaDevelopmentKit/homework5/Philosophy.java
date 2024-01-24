@@ -6,6 +6,7 @@ public class Philosophy implements Runnable{
     private final int id;
     private  final Lock leftFork;
     private final Lock rightFork;
+    private int number;
 
     public Philosophy(int id,Lock leftFork, Lock rightFork) {
         this.leftFork = leftFork;
@@ -15,6 +16,7 @@ public class Philosophy implements Runnable{
 
     private void eat() throws InterruptedException {
         System.out.println("Philosophy "+ id+", Eat...");
+        number++;
         Thread.sleep(300);
     }
     private void think() throws InterruptedException {
@@ -25,7 +27,7 @@ public class Philosophy implements Runnable{
     @Override
     public void run() {
         try {
-            while (true) {
+            while (number < 3) {
                 think();
                 leftFork.lock();
                 System.out.print(id+" Lock left, ");
